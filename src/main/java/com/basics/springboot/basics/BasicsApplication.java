@@ -2,6 +2,7 @@ package com.basics.springboot.basics;
 
 import com.basics.springboot.basics.bean.MyBeanWithProperties;
 import com.basics.springboot.basics.component.ComponentDependency;
+import com.basics.springboot.basics.pojo.UserPojo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
@@ -12,12 +13,15 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class BasicsApplication implements CommandLineRunner {
 private ComponentDependency componentDependency;
 private MyBeanWithProperties myBeanWithProperties;
+private UserPojo userPojo;
 
 public BasicsApplication(@Qualifier("componentImplementTwo") ComponentDependency componentDependency,
-						 MyBeanWithProperties myBeanWithProperties
+						 MyBeanWithProperties myBeanWithProperties,
+						 UserPojo userPojo
 						 ){
 	this.componentDependency = componentDependency;
 	this.myBeanWithProperties = myBeanWithProperties;
+	this.userPojo=userPojo;
 }
 	public static void main(String[] args) {
 		SpringApplication.run(BasicsApplication.class, args);
@@ -27,5 +31,6 @@ public BasicsApplication(@Qualifier("componentImplementTwo") ComponentDependency
 	public void run(String... args) throws Exception {
 componentDependency.hello();
 		System.out.println(myBeanWithProperties.function());
+		System.out.println(userPojo.getEmail() + " " + userPojo.getPassword() + " " + userPojo.getAge());
 	}
 }
