@@ -1,1 +1,1 @@
-# learnings-java-spring-boot-basics
+# basics spring
