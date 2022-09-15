@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.domain.Sort;
 
 import java.time.LocalDate;
 import java.util.Arrays;
@@ -46,6 +47,7 @@ componentDependency.hello();
 		System.out.println(userPojo.getEmail() + " " + userPojo.getPassword() + " " + userPojo.getAge());
 		LOGGER.error("This is an error");
 		saveUsersInDatabase();
+		getInfoWithJpql();
 	}
 
 	public void saveUsersInDatabase(){
@@ -55,5 +57,9 @@ componentDependency.hello();
 
 		list.stream().forEach(userRepository::save);
 
+	}
+	public void getInfoWithJpql(){
+	LOGGER.info("User " + userRepository.findByUserEmail("anastasia.corral.m@gmail.com"));
+	userRepository.findAndSort("D", Sort.by("id").ascending()).stream().forEach(user -> LOGGER.info("User => ".concat(user.toString())));
 	}
 }
