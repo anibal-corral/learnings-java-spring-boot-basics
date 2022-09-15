@@ -61,5 +61,7 @@ componentDependency.hello();
 	public void getInfoWithJpql(){
 	LOGGER.info("User " + userRepository.findByUserEmail("anastasia.corral.m@gmail.com"));
 	userRepository.findAndSort("D", Sort.by("id").ascending()).stream().forEach(user -> LOGGER.info("User => ".concat(user.toString())));
+	userRepository.findByNameAndEmail("Anastasia", "anastasia.corral.m@gmail.com").stream().forEach(user -> LOGGER.info("User and mail => ".concat(user.toString())));
 	}
+
 }
