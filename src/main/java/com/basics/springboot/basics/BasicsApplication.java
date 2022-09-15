@@ -62,6 +62,9 @@ componentDependency.hello();
 	LOGGER.info("User " + userRepository.findByUserEmail("anastasia.corral.m@gmail.com"));
 	userRepository.findAndSort("D", Sort.by("id").ascending()).stream().forEach(user -> LOGGER.info("User => ".concat(user.toString())));
 	userRepository.findByNameAndEmail("Anastasia", "anastasia.corral.m@gmail.com").stream().forEach(user -> LOGGER.info("User and mail => ".concat(user.toString())));
+
+	userRepository.findByNameLike("%a%").stream().forEach(user -> LOGGER.info("FIND BY NAME LIKE: " + user.toString()));
+		userRepository.findByName("%a%").stream().forEach(user -> LOGGER.info("FIND BY NAME: " + user.toString()));
 	}
 
 }
